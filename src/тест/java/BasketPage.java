@@ -14,13 +14,12 @@ public class BasketPage extends Base {
    static WebElement deleteProduct;
    static String addProductBrand;
    static String deleteProductTitle;
-    public static WebElement assertAddBasketProduct (By selector, By selector_brand, String expectedAddProductBrand) {
+    public static void assertAddBasketProduct (By selector, By selector_brand, String expectedAddProductBrand) {
         addProduct = wait.until(ExpectedConditions.elementToBeClickable(selector));
         if (chromeDriver.findElement(selector).isDisplayed()) {
             addProductBrand = chromeDriver.findElement(selector_brand).getText();
             Assert.assertEquals(expectedAddProductBrand, addProductBrand);
         }
-        return addProduct;
     }
 
     public static void assertDeleteBasketProduct (By selector,By selector_brand, By selector_delete,String expectedDeleteProductBrand) {
