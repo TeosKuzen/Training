@@ -16,20 +16,12 @@ public class FirstTest extends Base {
     @Test
     public void firstTest () {
 
-        SearchPage.goToSearch();
-        SearchPage.sendSearchProduct();
-        SearchPage.pressSearch();
-        ProductPage.choose_a_product();
-        ProductPage.sendProductToCart();
-        ProductPage.goToCart();
-        BasketPage.checkTheProductInCart();
-        BasketPage.checkTheDeletedProduct();
+        SearchPage.searchProduct();
+        ProductPage.chooseAndputProduct();
+        BasketPage.assertBasket();
         System.out.println("Test passed successfully");
     }
-
-
-
-
+    
     @After
     public void quit () {
         try {

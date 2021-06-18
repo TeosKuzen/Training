@@ -18,6 +18,12 @@ public class BasketPage extends Base {
    static WebElement deleteProduct;
    static String addProductBrand;
    static String deleteProductTitle;
+
+    public static void assertBasket() {
+        BasketPage.checkTheProductInCart();
+        BasketPage.checkTheDeletedProduct();
+    }
+
     public static void assertAddBasketProduct (By selector, By selector_brand, String expectedAddProductBrand) {
         addProduct = wait.until(ExpectedConditions.elementToBeClickable(selector));
         if (chromeDriver.findElement(selector).isDisplayed()) {
