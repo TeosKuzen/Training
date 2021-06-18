@@ -23,6 +23,7 @@ public class Base {
     public static void sendKeys (By selector, String text) {
         WebElement input = wait.until(ExpectedConditions.elementToBeClickable(selector));
         input.sendKeys(text);
+
     }
 
 
