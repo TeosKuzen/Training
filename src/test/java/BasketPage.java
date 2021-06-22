@@ -14,14 +14,12 @@ public class BasketPage extends Base {
    public static By brand_selector = By.xpath("//span[@class='good-info__good-brand']");
    public static String brand_text = "VENUS";
    public static By deleteProductSelector = By.xpath("//div[@class='btn__del j-basket-item-del']");
-   static WebElement addProduct;
-   static WebElement deleteProduct;
-   static String addProductBrand;
-   static String deleteProductTitle;
+   public static WebElement addProduct;
+   public static String addProductBrand;
 
-    public static void assertBasket() {
-        BasketPage.checkTheProductInCart();
-        BasketPage.checkTheDeletedProduct();
+    public static void checkBasket() {
+        checkTheProductInCart();
+        checkTheDeletedProduct();
     }
 
     public static void assertAddBasketProduct (By selector, By selector_brand, String expectedAddProductBrand) {
@@ -32,18 +30,14 @@ public class BasketPage extends Base {
         }
     }
 
-    public static void assertDeleteBasketProduct (By selector,By selector_brand, By selector_delete,String expectedDeleteProductBrand) {
+    public static void assertDeleteBasketProduct (By selector, By selector_delete) {
         WebElement deleteProduct = chromeDriver.findElement(selector);
         Assert.assertEquals(deleteProduct,addProduct);
         WebElement deleteButton = wait.until(ExpectedConditions.presenceOfElementLocated(selector_delete));
         Actions actions = new Actions(chromeDriver);
         actions.moveToElement(deleteButton).build().perform();
+        click(selector_delete);
 
-        if (deleteProduct.isDisplayed()) {
-            String actualDeleteProductBrand = chromeDriver.findElement(selector_brand).getText();
-            Assert.assertEquals(expectedDeleteProductBrand, actualDeleteProductBrand);
-            click(selector_delete);
-        }
         if (wait.until(ExpectedConditions.stalenessOf(deleteProduct))) {
             System.out.println("The product was successfully deleted");
         }
@@ -53,6 +47,6 @@ public class BasketPage extends Base {
         BasketPage.assertAddBasketProduct(BasketPage.product_in_basket, BasketPage.brand_selector, BasketPage.brand_text);
     }
     public static void checkTheDeletedProduct() {
-        BasketPage.assertDeleteBasketProduct(BasketPage.product_in_basket, BasketPage.brand_selector, BasketPage.deleteProductSelector, BasketPage.brand_text);
+        BasketPage.assertDeleteBasketProduct(BasketPage.product_in_basket, BasketPage.deleteProductSelector);
     }
 }

@@ -18,10 +18,10 @@ public class FirstTest extends Base {
 
         SearchPage.searchProduct();
         ProductPage.chooseAndputProduct();
-        BasketPage.assertBasket();
+        BasketPage.checkBasket();
         System.out.println("Test passed successfully");
     }
-    
+
     @After
     public void quit () {
         try {
